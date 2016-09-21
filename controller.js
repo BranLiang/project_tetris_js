@@ -7,9 +7,7 @@ APP.ControllerModule = (function (View, Tetris) {
 
 	stub.init = function () {
 		View.init();
-		Tetris.createTetris([
-			[0, 0]
-		]);
+		Tetris.createTetris();
 		keyListener();
 		myInterval();
 	};
@@ -30,21 +28,20 @@ APP.ControllerModule = (function (View, Tetris) {
 	var refreashScreen = function () {
 		View.clearBoard();
 		View.drawOneTetris(Tetris.getCurrentTetris());
+		View.drawFixedtetris(Tetris.getFixedTetris());
 	};
 
 	var myInterval = function () {
 		setInterval(function () {
 			refreashScreen();
 			Tetris.getCurrentTetris().tic();
-		}, 1000);
+			Tetris.checkIfShouldStop();
+		}, 200);
 	};
 
 	return stub;
 })(APP.ViewModule, APP.TetrisModule);
 
-$(document).ready(function () {
-	APP.ControllerModule.init();
-});
 $(document).ready(function () {
 	APP.ControllerModule.init();
 });

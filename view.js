@@ -15,6 +15,12 @@ APP.ViewModule = (function () {
 		};
 	};
 
+	stub.drawFixedtetris = function (tetrises) {
+		for (var i = 0; i < tetrises.length; i++) {
+			stub.drawOneTetris(tetrises[i]);
+		}
+	};
+
 	stub.init = function () {
 		createBlockDivs();
 	};
