@@ -19,7 +19,7 @@ APP.ControllerModule = (function (View, Tetris) {
 			var key = event.keyCode;
 			if (key === 37) {
 				Tetris.getCurrentTetris().moveLeft();
-				viewAction();
+				refreashScreen();
 			} else if (key === 39) {
 				Tetris.getCurrentTetris().moveRight();
 				refreashScreen();
