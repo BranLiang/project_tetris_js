@@ -22,8 +22,8 @@ APP.TetrisModule = (function () {
 	};
 
 	var TetrisConstructor = function (positionArray) {
-		var randomColor =
-			this.blocksArray = positionArray;
+		var randomColor = getRandomColor();
+		this.blocksArray = positionArray;
 		this.color = getRandomColor();
 		this.speed = 1;
 	};
