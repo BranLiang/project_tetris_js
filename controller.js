@@ -10,7 +10,7 @@ APP.ControllerModule = (function (View, Tetris) {
 		Tetris.createTetris([
 			[0, 0]
 		]);
-		// keyListener();
+		keyListener();
 		myInterval();
 	};
 
@@ -22,21 +22,21 @@ APP.ControllerModule = (function (View, Tetris) {
 				viewAction();
 			} else if (key === 39) {
 				Tetris.getCurrentTetris().moveRight();
-				viewAction();
+				refreashScreen();
 			};
 		});
 	};
 
-	var viewAction = function () {
+	var refreashScreen = function () {
 		View.clearBoard();
 		View.drawOneTetris(Tetris.getCurrentTetris());
 	};
 
 	var myInterval = function () {
 		setInterval(function () {
-			viewAction();
+			refreashScreen();
 			Tetris.getCurrentTetris().tic();
-		}, 10000);
+		}, 1000);
 	};
 
 	return stub;
