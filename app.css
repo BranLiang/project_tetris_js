@@ -1,0 +1,22 @@
+header {
+  text-align: center; }
+
+.board {
+  width: 200px;
+  height: 400px;
+  border-radius: 2px;
+  margin: 50px auto;
+  display: block;
+  position: relative;
+  border: solid 1px #333; }
+
+.coordinate {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: solid 1px #ccc; }
+
+.block {
+  border-radius: 2px; }
+
+/*# sourceMappingURL=app.css.map */
