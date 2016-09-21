@@ -5,14 +5,17 @@ APP.ControllerModule = (function (View, Tetris) {
 
 	var stub = {};
 
+	var intervalTime = 500;
+
 	stub.init = function () {
 		View.init();
 		Tetris.createTetris();
-		keyListener();
+		keyMoveListener();
+		keyAccelerateListener();
 		myInterval();
 	};
 
-	var keyListener = function () {
+	var keyMoveListener = function () {
 		$(document).keydown(function (event) {
 			var key = event.keyCode;
 			if (key === 37) {
@@ -21,7 +24,26 @@ APP.ControllerModule = (function (View, Tetris) {
 			} else if (key === 39) {
 				Tetris.getCurrentTetris().moveRight();
 				refreashScreen();
+			} else if (key === 38) {
+				Tetris.getCurrentTetris().rotate();
+				refreashScreen();
 			};
+		});
+	};
+
+	var keyAccelerateListener = function () {
+		$(document).keydown(function (event) {
+			var key = event.keyCode;
+			if (key === 40) {
+				intervalTime = 50;
+			};
+		});
+
+		$(document).keyup(function (event) {
+			var key = event.keyCode;
+			if (key === 40) {
+				intervalTime = 500;
+			}
 		});
 	};
 
@@ -32,11 +54,21 @@ APP.ControllerModule = (function (View, Tetris) {
 	};
 
 	var myInterval = function () {
-		setInterval(function () {
-			refreashScreen();
-			Tetris.getCurrentTetris().tic();
-			Tetris.checkIfShouldStop();
-		}, 200);
+		if (gameOver()) {
+			View.showGameOver();
+		} else {
+			setTimeout(function () {
+				refreashScreen();
+				Tetris.getCurrentTetris().tic();
+				Tetris.checkIfShouldStop();
+				Tetris.checkIfResolve();
+				myInterval();
+			}, intervalTime);
+		};
+	};
+
+	var gameOver = function () {
+		return Tetris.gameOver();
 	};
 
 	return stub;

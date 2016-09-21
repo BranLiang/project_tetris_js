@@ -25,6 +25,11 @@ APP.ViewModule = (function () {
 		createBlockDivs();
 	};
 
+	stub.showGameOver = function () {
+		var $gameover = $("<h1 class='gameover'>Game Over</h1>");
+		$('.board').append($gameover);
+	};
+
 	var drawOneBlock = function (position, color) {
 		var x = position[0];
 		var y = position[1];
